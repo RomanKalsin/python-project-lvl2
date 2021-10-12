@@ -1,5 +1,6 @@
 import json
 
+
 def type_conversion(val):
     if val is False:
         return 'false'
