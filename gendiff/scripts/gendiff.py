@@ -8,14 +8,12 @@ def main():
     parser.add_argument('second_file')
     parser.add_argument('-f', '--format', default="JSON", help='set format of output')
     args = parser.parse_args()
-    print(generate_diff(args.first_file, args.second_file))
-    print(__file__)
-    
+    print(generate_diff(args.first_file, args.second_file))    
 
 
 def generate_diff(file1_path, file2_path):
-    #/mnt/c/python/code/python-project-lvl2/file/file1.json
-    #C:\Python\Code\python-project-lvl2\\file\\file1.json
+    #for linux /mnt/c/python/code/python-project-lvl2/file/file1.json
+    #for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
     result = "{\n"
     file1 = json.load(open(file1_path))
     file2 = json.load(open(file2_path))
