@@ -4,6 +4,9 @@
 ### My test and linter
 [![.github/workflows/my-check.yml](https://github.com/RomanKalsin/python-project-lvl2/actions/workflows/my-check.yml/badge.svg)](https://github.com/RomanKalsin/python-project-lvl2/actions/workflows/my-check.yml)
 
+### Test coverage
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fb1b4aaf71595791cf68/test_coverage)](https://codeclimate.com/github/RomanKalsin/python-project-lvl2/test_coverage)
+
 ### Maintainability Badge
 [![Maintainability](https://api.codeclimate.com/v1/badges/fb1b4aaf71595791cf68/maintainability)](https://codeclimate.com/github/RomanKalsin/python-project-lvl2/maintainability)
 
