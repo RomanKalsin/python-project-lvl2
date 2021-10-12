@@ -9,10 +9,10 @@ jobs:
       - name: Checks out your repository
         uses: actions/checkout@v2
       - name: Install poetry
-        uses: pip install poetry
+        run: pip install poetry
       - name: Install project
-        uses: make install
+        run: make install
       - name: Start test
-        uses: make test
+        run: make test
       - name: Start lint
-        uses: make lint
+        run: make lint
