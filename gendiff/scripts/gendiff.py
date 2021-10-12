@@ -1,19 +1,32 @@
 import argparse
-import json    
+import json
 
 
 def main():
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', default="JSON", help='set format of output')
+    format_help = 'set format of output'
+    parser.add_argument('-f', '--format', default="JSON",
+                        help=format_help)
     args = parser.parse_args()
-    print(generate_diff(args.first_file, args.second_file))    
+    print(generate_diff(args.first_file, args.second_file))
+
+
+def type_conversion(val):
+    if val is False:
+        return 'false'
+    elif val is True:
+        return 'true'
+    elif val is None:
+        return 'null'
+    else:
+        return val
 
 
 def generate_diff(file1_path, file2_path):
-    #for linux /mnt/c/python/code/python-project-lvl2/file/file1.json
-    #for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
+    # for linux /mnt/c/python/code/python-project-lvl2/file/file1.json
+    # for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
     result = "{\n"
     file1 = json.load(open(file1_path))
     file2 = json.load(open(file2_path))
@@ -26,13 +39,18 @@ def generate_diff(file1_path, file2_path):
     for key in final_key_order:
         if key in set_crossing:
             if file1[key] == file2[key]:
+                file1[key] = type_conversion(file1[key])
                 result += '    {}: {}\n'.format(key, file1[key])
             else:
+                file1[key] = type_conversion(file1[key])
+                file2[key] = type_conversion(file2[key])
                 result += '  - {}: {}\n'.format(key, file1[key])
                 result += '  + {}: {}\n'.format(key, file2[key])
         elif key in set_only_file1:
+            file1[key] = type_conversion(file1[key])
             result += '  - {}: {}\n'.format(key, file1[key])
         elif key in set_only_file2:
+            file2[key] = type_conversion(file2[key])
             result += '  + {}: {}\n'.format(key, file2[key])
     result += '}'
     return result
