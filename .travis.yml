@@ -2,7 +2,7 @@ env:
   global:
     - CC_TEST_REPORTER_ID=2d29b41fb124721984c9b0610d2ac1831bf32ccc5e755449dcf1341a2bf6f515
 language: python
-python: 3.8.10
+python: 3.8
 before_install:
   - pip install poetry
  
