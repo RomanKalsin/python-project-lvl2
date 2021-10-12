@@ -12,3 +12,4 @@ test:
 	poetry run pytest --cov=gendiff --cov-report xml tests/  
 lint:
 	poetry run flake8 gendiff
+.PHONY: gendiff
