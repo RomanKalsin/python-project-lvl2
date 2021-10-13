@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 from gendiff.file_parser import file_parser
 
 
