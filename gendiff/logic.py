@@ -1,23 +1,12 @@
-import json
-
-
-def type_conversion(val):
-    if val is False:
-        return 'false'
-    elif val is True:
-        return 'true'
-    elif val is None:
-        return 'null'
-    else:
-        return val
+from gendiff.file_parser import file_parser
 
 
 def generate_diff(file1_path, file2_path):
     # for linux /mnt/c/python/code/python-project-lvl2/file/file1.json
     # for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
     result = "{\n"
-    file1 = json.load(open(file1_path))
-    file2 = json.load(open(file2_path))
+    file1 = file_parser(file1_path)
+    file2 = file_parser(file2_path)
     set_file1 = set(file1.keys())
     set_file2 = set(file2.keys())
     set_crossing = set_file1 & set_file2
@@ -42,3 +31,14 @@ def generate_diff(file1_path, file2_path):
             result += '  + {}: {}\n'.format(key, file2[key])
     result += '}'
     return result
+
+
+def type_conversion(val):
+    if val is False:
+        return 'false'
+    elif val is True:
+        return 'true'
+    elif val is None:
+        return 'null'
+    else:
+        return val

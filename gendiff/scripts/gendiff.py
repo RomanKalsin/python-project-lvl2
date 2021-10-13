@@ -1,15 +1,9 @@
-import argparse
+from gendiff.arg_parser import arg_parser
 from gendiff.logic import generate_diff
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Generate diff')
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    format_help = 'set format of output'
-    parser.add_argument('-f', '--format', default="JSON",
-                        help=format_help)
-    args = parser.parse_args()
+    args = arg_parser()
     print(generate_diff(args.first_file, args.second_file))
 
 
