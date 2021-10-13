@@ -19,7 +19,6 @@ def test_json_diff():
     second_path = 'tests/fixtures/json/file2.json'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff.txt')
     assert generate_diff(first_path, second_path) == ansver
-    #assert generate_diff('tests/fixtures/json/file4.json', 'tests/fixtures/json/file4.json') == "{\n}"
 
 
 def test_yaml_diff():
@@ -27,4 +26,17 @@ def test_yaml_diff():
     second_path = 'tests/fixtures/yaml/file2.yml'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff.txt')
     assert generate_diff(first_path, second_path) == ansver
-    #assert generate_diff('tests/fixtures/yaml/file4.yml', 'tests/fixtures/yaml/file4.yml') == "{\n}"
+
+
+def test_json_diff_nested():
+    first_path = 'tests/fixtures/json/file3.json'
+    second_path = 'tests/fixtures/json/file4.json'
+    ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff_nested.txt')
+    assert generate_diff(first_path, second_path) == ansver
+
+
+def test_yaml_diff_nested():
+    first_path = 'tests/fixtures/yaml/file3.yaml'
+    second_path = 'tests/fixtures/yaml/file4.yaml'
+    ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff_nested.txt')
+    assert generate_diff(first_path, second_path) == ansver
