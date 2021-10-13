@@ -10,5 +10,8 @@
 ### Maintainability Badge
 [![Maintainability](https://api.codeclimate.com/v1/badges/fb1b4aaf71595791cf68/maintainability)](https://codeclimate.com/github/RomanKalsin/python-project-lvl2/maintainability)
 
-### Gendiff example
+### Gendiff json example
 [![asciicast](https://asciinema.org/a/441516.svg)](https://asciinema.org/a/441516)
+
+### Gendiff yaml example
+[![asciicast](https://asciinema.org/a/441776.svg)](https://asciinema.org/a/441776)
