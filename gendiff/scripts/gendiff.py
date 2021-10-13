@@ -1,10 +1,16 @@
+#!/usr/bin/env python3
+
+
 from gendiff.arg_parser import arg_parser
 from gendiff.logic import generate_diff
+from gendiff.file_parser import file_parser
 
 
 def main():
     args = arg_parser()
-    print(generate_diff(args.first_file, args.second_file))
+    file1_data = file_parser(args.first_file)
+    file2_data = file_parser(args.second_file)
+    print(generate_diff(file1_data, file2_data))
 
 
 if __name__ == "__main__":

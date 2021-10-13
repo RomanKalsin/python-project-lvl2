@@ -1,47 +1,31 @@
 #!/usr/bin/env python3
 
 
-from gendiff.file_parser import file_parser
-
-
-def generate_diff(file1_path, file2_path):
+def generate_diff(file1, file2):
     # for linux /mnt/c/python/code/python-project-lvl2/file/file1.json
     # for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
-    result = "{\n"
-    file1 = file_parser(file1_path)
-    file2 = file_parser(file2_path)
+    result = {}
+    ADD, DEL, UPDATE = 'added', 'deleted', 'updated'
+    COMMON, NESTED = 'common', 'nested'
     set_file1 = set(file1.keys())
     set_file2 = set(file2.keys())
     set_crossing = set_file1 & set_file2
     set_only_file1 = set_file1 - set_file2
     set_only_file2 = set_file2 - set_file1
-    final_key_order = sorted(set_file1 | set_file2)
-    for key in final_key_order:
-        if key in set_crossing:
-            if file1[key] == file2[key]:
-                file1[key] = type_conversion(file1[key])
-                result += '    {}: {}\n'.format(key, file1[key])
+    for key in set_crossing:
+        first_item = file1[key]
+        second_item = file2[key]
+        if first_item == second_item:
+            result[key] = (COMMON, first_item)
+        else:
+            if type(first_item) == dict and type(second_item) == dict:
+                result[key] = (NESTED, generate_diff(first_item, second_item))
             else:
-                file1[key] = type_conversion(file1[key])
-                file2[key] = type_conversion(file2[key])
-                result += '  - {}: {}\n'.format(key, file1[key])
-                result += '  + {}: {}\n'.format(key, file2[key])
-        elif key in set_only_file1:
-            file1[key] = type_conversion(file1[key])
-            result += '  - {}: {}\n'.format(key, file1[key])
-        elif key in set_only_file2:
-            file2[key] = type_conversion(file2[key])
-            result += '  + {}: {}\n'.format(key, file2[key])
-    result += '}'
+                result[key] = (UPDATE, (first_item, second_item))
+    for key in set_only_file1:
+        first_item = file1[key]
+        result[key] = (DEL, first_item)
+    for key in set_only_file2:
+        second_item = file2[key]
+        result[key] = (ADD, second_item)
     return result
-
-
-def type_conversion(val):
-    if val is False:
-        return 'false'
-    elif val is True:
-        return 'true'
-    elif val is None:
-        return 'null'
-    else:
-        return val
