@@ -6,7 +6,7 @@ def generate_diff(file1, file2):
     # for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
     result = {}
     ADD, DEL, UPDATE = 'added', 'deleted', 'updated'
-    COMMON, NESTED = 'common', 'nested'
+    VAL, CHILD = 'value', 'children'
     set_file1 = set(file1.keys())
     set_file2 = set(file2.keys())
     set_crossing = set_file1 & set_file2
@@ -16,10 +16,10 @@ def generate_diff(file1, file2):
         first_item = file1[key]
         second_item = file2[key]
         if first_item == second_item:
-            result[key] = (COMMON, first_item)
+            result[key] = (VAL, first_item)
         else:
             if type(first_item) == dict and type(second_item) == dict:
-                result[key] = (NESTED, generate_diff(first_item, second_item))
+                result[key] = (CHILD, generate_diff(first_item, second_item))
             else:
                 result[key] = (UPDATE, (first_item, second_item))
     for key in set_only_file1:

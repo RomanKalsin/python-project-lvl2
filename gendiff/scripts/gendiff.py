@@ -4,13 +4,15 @@
 from gendiff.arg_parser import arg_parser
 from gendiff.logic import generate_diff
 from gendiff.file_parser import file_parser
+from gendiff.formaters.stylish import format
 
 
 def main():
     args = arg_parser()
     file1_data = file_parser(args.first_file)
     file2_data = file_parser(args.second_file)
-    print(generate_diff(file1_data, file2_data))
+    diff = generate_diff(file1_data, file2_data)
+    print(format(diff))
 
 
 if __name__ == "__main__":
