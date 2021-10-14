@@ -1,49 +1,32 @@
 #!/usr/bin/env python3
 
 
-def pack_dict(source, j):
-    result = '{' + '\n'
-    result += '    ' * (j + 1) + str(list(source.keys())[0]) + ': '
-    result += str(list(source.values())[0])
-    result += '\n' + '    ' * j + '}' + '\n'
-    return result
-
-
-def add_dict(operator, key, item, j):
-    result = ('    ' * j) + operator + key + ': '
-    if isinstance(item, dict):
-        result += pack_dict(item, j + 1)
-    else:
-        result += str(item) + '\n'
-    return result
-
-
-def final_pack(item1, item2, key, j):
-    result = ''
-    if item1 == 'updated':
-        old, new = item2
-        result += add_dict('  + ', key, new, j)
-        result += add_dict('  - ', key, old, j)
-    else:
-        if item1 == 'added':
-            result += add_dict('  + ', key, item2, j)
-        elif item1 == 'deleted':
-            result += add_dict('  - ', key, item2, j)
-        elif item1 == 'value':
-            result += add_dict('    ', key, item2, j)
-    return result
-
-
-def format(source, j=0):
-    result = '{' + '\n'
-    for key, item in tuple(sorted(source.items())):
-        if item[0] == 'children':
-            result += ('    ' * (j + 1)) + key + ': '
-            result += format(item[1], j+1) + '\n'
+def stylish(data, nested_level=0):
+    result = '{\n'
+    spaces_beginning = '    ' * nested_level
+    spaces_beginning += "  "
+    sorted_keys = sorted(data)
+    for key in sorted_keys:
+        item = data[key]
+        status_item = item[0]
+        if status_item == 'children':
+            result += '{}  {}: '.format(spaces_beginning, key)
+            result += stylish(item[1], nested_level + 1)
+            result += '\n'
         else:
-            result += final_pack(item[0], item[1], key, j)
-    if result[-1] != '}':
-        result = result + ('    ' * j) + '}'
-    else:
-        result = result + '}'
+            result += make_string_stylish(status_item, spaces_beginning, key, item[1])            
+    result += spaces_beginning
+    result += '}\n'
     return result
+
+
+def make_string_stylish(status_item, spaces_beginning, key, item):
+    symbol = {'added': "+", 'deleted': "-", 'value': " "}
+    result = ''
+    if status_item == 'updated':
+        result += '{}{} {}: {}\n'.format(spaces_beginning, symbol['deleted'], key, item[0])
+        result += '{}{} {}: {}\n'.format(spaces_beginning, symbol['added'], key, item[1])
+        return result
+    else:
+        result += '{}{} {}: {}\n'.format(spaces_beginning, symbol[status_item], key, item)
+        return result
