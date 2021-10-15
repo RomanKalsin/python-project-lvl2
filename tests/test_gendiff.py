@@ -2,7 +2,7 @@
 """Tests."""
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.file_parser import file_parser
-from gendiff.formaters.stylish import format
+from gendiff.formaters.stylish import stylish
 
 
 def extract_exp_value(path):
@@ -21,7 +21,7 @@ def test_json_diff():
     second_path = file_parser('tests/fixtures/json/file2.json')
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff.txt')
     diff = generate_diff(first_path, second_path)
-    assert format(diff) == ansver
+    assert stylish(diff) == ansver
 
 
 def test_yaml_diff():
@@ -29,7 +29,7 @@ def test_yaml_diff():
     second_path = file_parser('tests/fixtures/yaml/file2.yml')
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff.txt')
     diff = generate_diff(first_path, second_path)
-    assert format(diff) == ansver
+    assert stylish(diff) == ansver
 
 
 def test_json_diff_nested():
@@ -37,7 +37,7 @@ def test_json_diff_nested():
     second_path = file_parser('tests/fixtures/json/file4.json')
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff_nested.txt')
     diff = generate_diff(first_path, second_path)
-    assert format(diff) == ansver
+    assert stylish(diff) == ansver
 
 
 def test_yaml_diff_nested():
@@ -45,4 +45,4 @@ def test_yaml_diff_nested():
     second_path = file_parser('tests/fixtures/yaml/file4.yaml')
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff_nested.txt')
     diff = generate_diff(first_path, second_path)
-    assert format(diff) == ansver
+    assert stylish(diff) == ansver
