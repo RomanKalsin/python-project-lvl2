@@ -9,7 +9,7 @@ package-install:
 package-uninstall:
 	python3 -m pip uninstall hexlet-code
 test:
-	poetry run pytest
+	poetry run pytest -vv
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml tests/  
 lint:

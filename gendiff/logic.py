@@ -2,8 +2,6 @@
 
 
 def generate_diff(file1, file2):
-    # for linux /mnt/c/python/code/python-project-lvl2/file/file1.json
-    # for windows C:\Python\Code\python-project-lvl2\\file\\file1.json
     result = {}
     ADD, DEL, UPDATE = 'added', 'deleted', 'updated'
     VAL, CHILD = 'value', 'children'
