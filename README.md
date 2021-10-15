@@ -6,6 +6,7 @@
 
 ### Gendiff json example 
 [![asciicast](https://asciinema.org/a/441516.svg)](https://asciinema.org/a/441516)
+[![asciicast](https://asciinema.org/a/442454.svg)](https://asciinema.org/a/442454)
 
 ### Gendiff yaml example
 [![asciicast](https://asciinema.org/a/441776.svg)](https://asciinema.org/a/441776)
