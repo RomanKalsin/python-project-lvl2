@@ -3,7 +3,6 @@
 
 
 from gendiff import generate_diff
-from gendiff.arg_parser import choose_formater
 
 
 def extract_exp_value(path):
