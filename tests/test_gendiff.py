@@ -3,6 +3,7 @@
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.file_parser import file_parser
 from gendiff.formaters.stylish import stylish
+from gendiff.formaters.plain import plain
 
 
 def extract_exp_value(path):
@@ -46,3 +47,11 @@ def test_yaml_diff_nested():
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff_nested.txt')
     diff = generate_diff(first_path, second_path)
     assert stylish(diff) == ansver
+
+
+def test_diff_plain():
+    first_path = file_parser('tests/fixtures/json/file3.json')
+    second_path = file_parser('tests/fixtures/json/file4.json')
+    ansver = extract_exp_value('tests/fixtures/ansvers/exp_plain_diff.txt')
+    diff = generate_diff(first_path, second_path)
+    assert plain(diff) == ansver

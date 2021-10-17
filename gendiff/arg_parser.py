@@ -1,5 +1,6 @@
 import argparse
 from gendiff.formaters.stylish import stylish
+from gendiff.formaters.plain import plain
 
 
 def arg_parser():
@@ -13,4 +14,6 @@ def arg_parser():
 
 
 def choose_formater(name):
+    if name == 'plain':
+        return plain
     return stylish
