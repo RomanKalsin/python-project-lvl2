@@ -8,7 +8,7 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 package-uninstall:
 	python3 -m pip uninstall hexlet-code
-test:
+test: lint
 	poetry run pytest -vv
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml tests/  

@@ -11,3 +11,4 @@
 
 ### Gendiff yaml example
 [![asciicast](https://asciinema.org/a/441776.svg)](https://asciinema.org/a/441776)
+[![asciicast](https://asciinema.org/a/442855.svg)](https://asciinema.org/a/442855)

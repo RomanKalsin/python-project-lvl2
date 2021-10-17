@@ -1,6 +1,7 @@
 import argparse
 from gendiff.formaters.stylish import stylish
 from gendiff.formaters.plain import plain
+from gendiff.formaters.json import form_json
 
 
 def arg_parser():
@@ -16,4 +17,6 @@ def arg_parser():
 def choose_formater(name):
     if name == 'plain':
         return plain
+    elif name == 'json':
+        return form_json
     return stylish
