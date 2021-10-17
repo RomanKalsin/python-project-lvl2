@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-def generate_diff(file1, file2):
+def generate(file1, file2):
     result = {}
     ADD, DEL, UPDATE = 'added', 'deleted', 'updated'
     VAL, CHILD = 'value', 'children'
@@ -17,7 +17,7 @@ def generate_diff(file1, file2):
             result[key] = (VAL, first_item)
         else:
             if type(first_item) == dict and type(second_item) == dict:
-                result[key] = (CHILD, generate_diff(first_item, second_item))
+                result[key] = (CHILD, generate(first_item, second_item))
             else:
                 result[key] = (UPDATE, (first_item, second_item))
     for key in set_only_file1:
