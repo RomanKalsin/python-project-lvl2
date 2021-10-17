@@ -21,7 +21,7 @@ def test_json_diff():
     first_path = 'tests/fixtures/json/file1.json'
     second_path = 'tests/fixtures/json/file2.json'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_stylish_diff.txt')
-    format = choose_formater('')
+    format = ''
     assert generate_diff(first_path, second_path, format) == ansver
 
 
@@ -29,7 +29,7 @@ def test_yaml_diff():
     first_path = 'tests/fixtures/yaml/file1.yaml'
     second_path = 'tests/fixtures/yaml/file2.yml'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_stylish_diff.txt')
-    format = choose_formater('')
+    format = ''
     assert generate_diff(first_path, second_path, format) == ansver
 
 
@@ -37,7 +37,7 @@ def test_json_diff_nested():
     first_path = 'tests/fixtures/json/file3.json'
     second_path = 'tests/fixtures/json/file4.json'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_stylish_diff_nested.txt')
-    format = choose_formater('')
+    format = ''
     assert generate_diff(first_path, second_path, format) == ansver
 
 
@@ -45,7 +45,7 @@ def test_yaml_diff_nested():
     first_path = 'tests/fixtures/yaml/file3.yaml'
     second_path = 'tests/fixtures/yaml/file4.yaml'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_stylish_diff_nested.txt')
-    format = choose_formater('')
+    format = ''
     assert generate_diff(first_path, second_path, format) == ansver
 
 
@@ -53,7 +53,7 @@ def test_diff_plain():
     first_path = 'tests/fixtures/json/file3.json'
     second_path = 'tests/fixtures/json/file4.json'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_plain_diff.txt')
-    format = choose_formater('plain')
+    format = 'plain'
     assert generate_diff(first_path, second_path, format) == ansver
 
 
@@ -61,5 +61,5 @@ def test_diff_json():
     first_path = 'tests/fixtures/yaml/file3.yaml'
     second_path = 'tests/fixtures/yaml/file4.yaml'
     ansver = extract_exp_value('tests/fixtures/ansvers/exp_json_diff_nested.txt')
-    format = choose_formater('json')
+    format = 'json'
     assert generate_diff(first_path, second_path, format) == ansver
